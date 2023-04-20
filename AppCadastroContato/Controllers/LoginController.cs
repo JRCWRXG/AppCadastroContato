@@ -38,7 +38,7 @@ namespace AppCadastroContato.Controllers
                         TempData["MensagemErro"] = $"Senha do usuário é inválida, tente novamente.";
                     }
 
-                    TempData["MensagemErro"] = $"Usuário e/ou senha inválido(s). Por favor, tente novamente.";
+                    TempData["MensagemErro"] = $"Usuário e/ou senha inválido(s). Por favor, tente novamente!";
                 }
 
                 return View("Index");
