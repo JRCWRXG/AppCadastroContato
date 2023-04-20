@@ -18,7 +18,7 @@ namespace AppCadastroContato.Controllers
             return View();
         }
 
-        public IActionResult Entrar(LoginModel loginModel)
+        public IActionResult Entrar(LoginModel loginModel) 
         {
             try
             {
@@ -32,8 +32,8 @@ namespace AppCadastroContato.Controllers
                         if (usuario.SenhaValida(loginModel.Senha))
                         {
 
-                            return RedirectToAction("Index", "Home");
-                        }
+                        return RedirectToAction("Index", "Home");
+                    }
 
                         TempData["MensagemErro"] = $"Senha do usuário é inválida, tente novamente.";
                     }
@@ -41,7 +41,7 @@ namespace AppCadastroContato.Controllers
                     TempData["MensagemErro"] = $"Usuário e/ou senha inválido(s). Por favor, tente novamente!";
                 }
 
-                return View("Index");
+                return View("Index");  
 
             }
             catch (Exception erro)
@@ -50,7 +50,7 @@ namespace AppCadastroContato.Controllers
                 TempData["MensagemErro"] = $"Opss, não conseguimos realizar seu login, tente novamante, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-
+        
         }
     }
 }
