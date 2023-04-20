@@ -56,11 +56,11 @@
                         <td>@usuario.Login</td>
                         <td>@usuario.Email</td>
                         <td>@(usuario.Perfil == AppCadastroContato.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
-                        <td>
+                        @*<td>
                             <a href="javascript:" usuario-id="@usuario.Id" class="btn btn-success btn-sm btn-total-contatos">
                                 @(usuario.Contatos != null && usuario.Contatos.Any() ? usuario.Contatos.Count() : 0)
                             </a>
-                        </td>
+                        </td>*@
                         <td>@usuario.DataCadastro</td>
                         <td>
                             <div class="btn-group" role="group">
