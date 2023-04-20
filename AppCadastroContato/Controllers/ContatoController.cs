@@ -1,4 +1,5 @@
-﻿using AppCadastroContato.Models;
+﻿using AppCadastroContato.Helper;
+using AppCadastroContato.Models;
 using AppCadastroContato.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,14 @@ namespace AppCadastroContato.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
-        public ContatoController(IContatoRepositorio contatoRepositorio)
+        private readonly ISessao _sessao;
+
+        public ContatoController(IContatoRepositorio contatoRepositorio,
+                                 ISessao sessao)
         {
             this._contatoRepositorio = contatoRepositorio;
-        }
+            this._sessao = sessao;
+        }   
 
         public IActionResult Index()
         {

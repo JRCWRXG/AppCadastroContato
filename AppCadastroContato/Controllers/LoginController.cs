@@ -1,4 +1,5 @@
-﻿using AppCadastroContato.Models;
+﻿using AppCadastroContato.Helper;
+using AppCadastroContato.Models;
 using AppCadastroContato.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,18 +8,30 @@ namespace AppCadastroContato.Controllers
     public class LoginController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly ISessao _sessao;
 
-        public LoginController(IUsuarioRepositorio usuarioRepositorio)
+        public LoginController(IUsuarioRepositorio usuarioRepositorio, ISessao sessao)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _sessao = sessao;
         }
 
         public IActionResult Index()
         {
+            // Se usuario estiver loago, redirecionar para a home
+
+            if (_sessao.BuscarSessaoDoUsuario() != null) return RedirectToAction("Index", "Home");
             return View();
         }
 
-        public IActionResult Entrar(LoginModel loginModel) 
+        public IActionResult Sair()
+        {
+            _sessao.RemoverSessaoUsuario();
+
+            return RedirectToAction("Index", "Login");
+        }
+
+        public IActionResult Entrar(LoginModel loginModel)
         {
             try
             {
@@ -31,9 +44,9 @@ namespace AppCadastroContato.Controllers
                     {
                         if (usuario.SenhaValida(loginModel.Senha))
                         {
-
-                        return RedirectToAction("Index", "Home");
-                    }
+                            _sessao.CriarSessaoDoUsuario(usuario);
+                            return RedirectToAction("Index", "Home");
+                        }
 
                         TempData["MensagemErro"] = $"Senha do usuário é inválida, tente novamente.";
                     }
@@ -41,7 +54,7 @@ namespace AppCadastroContato.Controllers
                     TempData["MensagemErro"] = $"Usuário e/ou senha inválido(s). Por favor, tente novamente!";
                 }
 
-                return View("Index");  
+                return View("Index");
 
             }
             catch (Exception erro)
@@ -50,7 +63,7 @@ namespace AppCadastroContato.Controllers
                 TempData["MensagemErro"] = $"Opss, não conseguimos realizar seu login, tente novamante, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
-        
+
         }
     }
 }
