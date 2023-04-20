@@ -15,6 +15,6 @@ namespace AppCadastroContato.Models
 
         [Required(ErrorMessage = "Digite celular do contato")]
         [Phone(ErrorMessage ="Celular invalido")]
-        public string? Celuar { get; set; }
+        public string? Celular { get; set; }
     }
 }

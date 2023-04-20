@@ -41,7 +41,7 @@ namespace AppCadastroContato.Repositorio
 
             contatoDB.Nome = contato.Nome;  
             contatoDB.Email = contato.Email;    
-            contatoDB.Celuar = contato.Celuar;  
+            contatoDB.Celular = contato.Celular;  
 
             _bancoContext.Contatos.Update(contatoDB);   
             _bancoContext.SaveChanges();    

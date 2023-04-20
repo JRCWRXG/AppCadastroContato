@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCadastroContato.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230417003209_criacaotabelausuario")]
-    partial class criacaotabelausuario
+    [Migration("20230420110720_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace AppCadastroContato.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Celuar")
+                    b.Property<string>("Celular")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

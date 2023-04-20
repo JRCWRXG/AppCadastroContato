@@ -30,7 +30,7 @@ namespace AppCadastroContato.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Celuar")
+                    b.Property<string>("Celular")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
