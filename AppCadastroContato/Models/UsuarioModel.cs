@@ -1,4 +1,5 @@
 ﻿using AppCadastroContato.Enums;
+using AppCadastroContato.Helper;
 using System.ComponentModel.DataAnnotations;
 
 namespace AppCadastroContato.Models
@@ -31,7 +32,13 @@ namespace AppCadastroContato.Models
 
         public bool SenhaValida(string senha)
         {
-            return Senha == senha;
+            return Senha == senha.GerarHash();
         }
+
+        public void SetSenhaHash()
+        {
+            Senha = Senha.GerarHash();
+        }
+
     }
 }
