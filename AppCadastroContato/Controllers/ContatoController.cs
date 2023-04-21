@@ -11,9 +11,8 @@ namespace AppCadastroContato.Controllers
     {
         private readonly IContatoRepositorio _contatoRepositorio;
         private readonly ISessao _sessao;
-
-        public ContatoController(IContatoRepositorio contatoRepositorio,
-                                 ISessao sessao)
+       
+        public ContatoController(IContatoRepositorio contatoRepositorio, ISessao sessao)
         {
             this._contatoRepositorio = contatoRepositorio;
             this._sessao = sessao;
