@@ -1,10 +1,12 @@
-﻿using AppCadastroContato.Helper;
+﻿using AppCadastroContato.Filters;
+using AppCadastroContato.Helper;
 using AppCadastroContato.Models;
 using AppCadastroContato.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppCadastroContato.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
