@@ -1,4 +1,5 @@
 using AppCadastroContato.Data;
+using AppCadastroContato.Helper;
 using AppCadastroContato.Repositorio;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,10 +18,20 @@ namespace AppCadastroContato
              .AddDbContext<BancoContext>(
              options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
              );
-
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-           
+            builder.Services.AddScoped<ISessao, Sessao>();
+            builder.Services.AddScoped<IEmail, Email>();
+
+
+
+            builder.Services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
+
 
             var app = builder.Build();
 
@@ -34,6 +45,7 @@ namespace AppCadastroContato
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

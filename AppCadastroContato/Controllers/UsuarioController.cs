@@ -1,9 +1,11 @@
-﻿using AppCadastroContato.Models;
+﻿using AppCadastroContato.Filters;
+using AppCadastroContato.Models;
 using AppCadastroContato.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppCadastroContato.Controllers
 {
+    [PaginaRestritaSomenteAdmin]
     public class UsuarioController : Controller
     {
 
